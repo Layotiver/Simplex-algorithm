@@ -1,9 +1,9 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 int n, m;
-double cc[1010], ba[1010][1010];
-int xx[1010];
+double cc[1010], ba[1010][1010]; //价值向量和系数矩阵，b[i][0]是资源向量
+int xx[1010];                    //基变量的下标
 
 void input()
 {
@@ -53,7 +53,7 @@ void print()
 
 void change(int in)
 {
-    double th[1010], min = 99999999, div, mi;
+    double th[1010], min = 99999999, div, mi; // th:Theta
     int i, j, out;
 
     for (i = 1; i <= m; i++)
@@ -84,7 +84,7 @@ void change(int in)
 
 bool solve()
 {
-    double o[1010];
+    double o[1010]; // o:检验数
     int i, j;
     for (i = 1; i <= n; i++)
     {
@@ -93,15 +93,14 @@ bool solve()
         {
             o[i] -= cc[xx[j]] * ba[j][i];
         }
-        
     }
     printf("                                    ");
-    for(i=1;i<=n;i++)
+    for (i = 1; i <= n; i++)
     {
-        printf("%12.2lf",o[i]);
+        printf("%12.2lf", o[i]);
     }
     printf("\n\n");
-    for(i=1;i<=n;i++)
+    for (i = 1; i <= n; i++)
     {
         if (o[i] > 0)
         {
@@ -109,7 +108,7 @@ bool solve()
             return 1;
         }
     }
-    //print();
+    // print();
     return 0;
 }
 
