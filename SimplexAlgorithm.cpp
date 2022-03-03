@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
 int n, m;
@@ -29,27 +29,26 @@ void input()
 void print()
 {
     int i, j;
-    printf("   c_j   ");
+    printf("               c_j          ");
     for (i = 1; i <= n; i++)
     {
-        printf(" %.2lf", cc[i]);
+        printf(" %12.2lf", cc[i]);
     }
-    printf("\nc_b  x_b  b  ");
+    printf("\nc_b          x_b         b      ");
     for (i = 1; i <= n; i++)
     {
-        printf(" x_%d ", i);
+        printf("      x_%d    ", i);
     }
     printf("\n");
     for (i = 1; i <= m; i++)
     {
-        printf("%.2lf x_%d %.2lf", cc[xx[i]], xx[i], ba[i][0]);
+        printf("%12.2lf x_%d %12.2lf", cc[xx[i]], xx[i], ba[i][0]);
         for (j = 1; j <= n; j++)
         {
-            printf(" %.2lf", ba[i][j]);
+            printf(" %12.2lf", ba[i][j]);
         }
         printf("\n");
     }
-    printf("\n");
 }
 
 void change(int in)
@@ -59,7 +58,7 @@ void change(int in)
 
     for (i = 1; i <= m; i++)
     {
-        th[i] = ba[i][1] / ba[i][in];
+        th[i] = ba[i][0] / ba[i][in];
         if (th[i] < 0)
             continue;
         out = min < th[i] ? out : i;
@@ -77,7 +76,7 @@ void change(int in)
         mi = ba[i][in];
         for (j = 0; j <= n; j++)
         {
-            ba[i][j] -= ba[m][j] * mi;
+            ba[i][j] -= ba[out][j] * mi;
         }
     }
     xx[out] = in;
@@ -94,13 +93,23 @@ bool solve()
         {
             o[i] -= cc[xx[j]] * ba[j][i];
         }
+        
+    }
+    printf("                                    ");
+    for(i=1;i<=n;i++)
+    {
+        printf("%12.2lf",o[i]);
+    }
+    printf("\n\n");
+    for(i=1;i<=n;i++)
+    {
         if (o[i] > 0)
         {
             change(i);
             return 1;
         }
     }
-    print();
+    //print();
     return 0;
 }
 
