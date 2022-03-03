@@ -2,7 +2,7 @@
 using namespace std;
 
 int n, m;
-double cc[1010], ba[1010][1010], bb[1010];
+double cc[1010], ba[1010][1010];
 int xx[1010];
 
 void input()
@@ -22,7 +22,7 @@ void input()
     }
     for (i = 1; i <= m; i++)
     {
-        cin >> xx[i] >> bb[i];
+        cin >> xx[i];
     }
 }
 
@@ -42,13 +42,14 @@ void print()
     printf("\n");
     for (i = 1; i <= m; i++)
     {
-        printf("%.2lf x_%d %.2lf", cc[xx[i]], xx[i], bb[i]);
+        printf("%.2lf x_%d %.2lf", cc[xx[i]], xx[i], ba[i][0]);
         for (j = 1; j <= n; j++)
         {
             printf(" %.2lf", ba[i][j]);
         }
         printf("\n");
     }
+    printf("\n");
 }
 
 void change(int in)
@@ -93,7 +94,7 @@ bool solve()
         {
             o[i] -= cc[xx[j]] * ba[j][i];
         }
-        if (o[i] < 0)
+        if (o[i] > 0)
         {
             change(i);
             return 1;

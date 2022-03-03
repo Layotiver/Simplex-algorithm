@@ -1,2 +1,2 @@
 # Simplex-algorithm
-A program do Simplex algorithm
+A program doing Simplex algorithm
